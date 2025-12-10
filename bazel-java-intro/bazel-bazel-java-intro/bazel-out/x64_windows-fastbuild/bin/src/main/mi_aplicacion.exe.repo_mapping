@@ -1,0 +1,8 @@
+,mi_proyecto_java_limpio,_main
+bazel_tools,local_jdk,rules_java++toolchains+local_jdk
+rules_java+,local_jdk,rules_java++toolchains+local_jdk
+rules_java++toolchains+local_jdk,local_jdk,rules_java++toolchains+local_jdk
+rules_java++toolchains+remote_java_tools,local_jdk,rules_java++toolchains+local_jdk
+rules_java++toolchains+remote_java_tools_windows,local_jdk,rules_java++toolchains+local_jdk
+rules_java++toolchains+remotejdk11_win,local_jdk,rules_java++toolchains+local_jdk
+rules_java++toolchains+remotejdk21_win,local_jdk,rules_java++toolchains+local_jdk

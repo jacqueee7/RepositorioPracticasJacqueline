@@ -1,0 +1,6 @@
+# MODULE.bazel file
+
+module(name = "mi_proyecto_java_limpio")
+
+# La única dependencia externa necesaria para Java es rules_java
+bazel_dep(name = "rules_java", version = "7.3.0")
