@@ -1,10 +1,10 @@
 load("@rules_java//java:defs.bzl", "java_binary")
 
 # 1. Compilar el código Java
-
 java_library(
     name = "aplicacion_lib",
-    srcs = glob(["java/com/miempresa/Main.java"]),
+    # Ajustamos la ruta: de "java/com/..." a "com/..." porque ahora estamos directamente en pkg
+    srcs = glob(["com/miempresa/Main.java"]),
     visibility = ["//visibility:public"],
 )
 
@@ -12,7 +12,6 @@ java_library(
 java_binary(
     name = "mi_aplicacion",
     main_class = "com.miempresa.Main",
-    #dependedencia necesarioa para que la regla compile los srcs
     runtime_deps = [
         ":aplicacion_lib",
     ],
