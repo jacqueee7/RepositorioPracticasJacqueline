@@ -1,6 +1,19 @@
 # MODULE.bazel file
 
-module(name = "mi_proyecto_java_limpio")
+module(name = "mi_proyecto_java")
 
-# La única dependencia externa necesaria para Java es rules_java
+# La única dependencia externa necesaria para Java es rules_java REGLAS BÁSICAS DE JAVA
 bazel_dep(name = "rules_java", version = "7.3.0")
+
+# REGLAS PARA CARGAR LIBRERIAS EXTERNAS (MAVEN)
+bazel_dep(name = "rules_jvm_external", version = "6.2")
+
+# DESCARGAR JUNIT 
+maven = use_extension("@rules_jvm_external//:extensions.bzl", "maven")
+maven.install(
+    artifacts = [
+        "junit:junit:4.13.2",
+    ],
+    lock_file = "//:maven_install.json",
+)
+use_repo(maven, "maven")
