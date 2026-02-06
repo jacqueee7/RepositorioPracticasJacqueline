@@ -23,6 +23,7 @@ java_test(
     name = "SaludoTest",
     srcs = ["com/miempresa/SaludoTest.java"],
     test_class = "com.miempresa.SaludoTest",
+    size = "small", # Es una prueba rápida
     deps = [
         ":aplicacion_lib",       # Tu código
         "@maven//:junit_junit",  # La librería JUnit 4
