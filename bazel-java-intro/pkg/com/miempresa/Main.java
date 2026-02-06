@@ -5,6 +5,7 @@ public class Main {
         //System.out.println("¡Hola, Mundo!");
        Saludo saludo = new Saludo();
        System.out.println(saludo.obtenerMensaje());
+       System.out.println(saludo.saludarA("Jacqueline"));
 
     }
 }

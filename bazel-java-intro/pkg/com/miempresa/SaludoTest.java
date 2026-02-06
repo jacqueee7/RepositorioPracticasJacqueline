@@ -4,6 +4,8 @@ package com.miempresa;
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
+import java.beans.Transient;
+
 public class SaludoTest {
 
     @Test
@@ -11,5 +13,26 @@ public class SaludoTest {
         Saludo saludo = new Saludo();
 
         assertEquals("Hola desde Bazel con Test", saludo.obtenerMensaje());
+    }
+
+    @Test
+    public void testSaludarConNombre() {
+        Saludo saludo = new Saludo();
+
+        assertEquals("Hola, Jacqueline!", saludo.saludarA("Jacqueline"));
+        assertEquals("Hola, Bazel!", saludo.saludarA("Bazel"));
+    }
+
+    @Test
+    public void testSaludarVacio(){
+        Saludo saludo = new Saludo();
+        assertEquals("Hola, ¿cómo estás?", saludo.saludarA(""));
+        assertEquals("Hola, ¿cómo estás?", saludo.saludarA("   "));
+    }
+
+    @Test
+    public void testSaludarNull(){
+        Saludo saludo = new Saludo();
+        assertEquals("Hola, ¿cómo estás?", saludo.saludarA(null));
     }
 }
