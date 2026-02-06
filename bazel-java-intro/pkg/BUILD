@@ -1,15 +1,15 @@
-load("@rules_java//java:defs.bzl", "java_binary")
+load("@rules_java//java:defs.bzl", "java_binary", "java_library", "java_test")
 
 # 1. Compilar el código Java (LIBRERÍA)
 java_library(
     name = "aplicacion_lib",
-    # Ajustamos la ruta:  "com/..." porque ahora estamos directamente en pkg
     srcs = ["com/miempresa/Main.java",
             "com/miempresa/Saludo.java"],
+    deps = ["//utils:calculadora"], 
     visibility = ["//visibility:public"],
 )
 
-# 2. Crear el ejecutable y dependencia de la biblioteca
+# 2. Crear el ejecutable
 java_binary(
     name = "mi_aplicacion",
     main_class = "com.miempresa.Main",
@@ -23,9 +23,9 @@ java_test(
     name = "SaludoTest",
     srcs = ["com/miempresa/SaludoTest.java"],
     test_class = "com.miempresa.SaludoTest",
-    size = "small", # Es una prueba rápida
+    size = "small",
     deps = [
-        ":aplicacion_lib",       # Tu código
-        "@maven//:junit_junit",  # La librería JUnit 4
+        ":aplicacion_lib",
+        "@maven//:junit_junit",
     ],
 )
