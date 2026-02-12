@@ -5,7 +5,10 @@ java_library(
     name = "aplicacion_lib",
     srcs = ["com/miempresa/Main.java",
             "com/miempresa/Saludo.java"],
-    deps = ["//utils:calculadora"], 
+    deps = [
+        "//utils:calculadora",
+        "@maven//:com_google_code_gson_gson", #LIBRERÍA EXTERNA 
+        ], 
     visibility = ["//visibility:public"],
 )
 

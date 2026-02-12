@@ -35,5 +35,3 @@ public class SaludoTest {
         assertEquals("Hola, ¿cómo estás?", saludo.saludarA(null));
     }
 }
-
-//Ignoro los fallos de cobertura de código en esta clase de prueba, ya que el objetivo principal es verificar la funcionalidad básica del saludo.
