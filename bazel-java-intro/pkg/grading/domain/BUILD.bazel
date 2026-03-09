@@ -1,3 +1,13 @@
+# Grading domain layer - value objects for the grading bounded context.
+#
+# Contains:
+#   - Grade: a numeric value between 0 and 10
+#   - Subject: the name of a school subject (e.g., "Mathematics")
+#   - StudentGrade: aggregate linking a student, subject, grade, and the teacher who graded
+#
+# This domain depends on StudentId and TeacherId from the registry domain.
+# It only imports the :id targets (identities), NOT the full student/teacher domains.
+
 load("@rules_java//java:defs.bzl", "java_library", "java_test")
 
 java_library(
@@ -8,10 +18,12 @@ java_library(
     ),
     visibility = ["//visibility:public"],
     deps = [
-        "//pkg/registry/domain/student:id",
-        "//pkg/registry/domain/teacher:id",
+        "//pkg/registry/domain/student:id",  # StudentGrade references StudentId
+        "//pkg/registry/domain/teacher:id",  # StudentGrade references TeacherId
     ],
 )
+
+# -- Tests --
 
 java_test(
     name = "GradeTest",

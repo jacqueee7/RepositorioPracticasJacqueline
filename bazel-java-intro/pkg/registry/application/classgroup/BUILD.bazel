@@ -1,3 +1,10 @@
+# ClassGroup application layer - use cases and repository interface.
+#
+# Contains:
+#   - ClassGroupRepository: interface for persisting/finding class groups
+#   - CreateClassGroup: use case to create a new group with a tutor teacher
+#   - AddStudentToClassGroup: use case to add a student to an existing group
+
 load("@rules_java//java:defs.bzl", "java_library", "java_test")
 
 java_library(
@@ -8,9 +15,9 @@ java_library(
     ),
     visibility = ["//visibility:public"],
     deps = [
-        "//pkg/registry/domain/classgroup:domain",
-        "//pkg/registry/domain/student:id",
-        "//pkg/registry/domain/teacher:id",
+        "//pkg/registry/domain/classgroup:domain",  # Uses ClassGroup, ClassGroupId, ClassGroupName
+        "//pkg/registry/domain/student:id",          # Uses StudentId (to add students)
+        "//pkg/registry/domain/teacher:id",          # Uses TeacherId (tutor of the group)
     ],
 )
 

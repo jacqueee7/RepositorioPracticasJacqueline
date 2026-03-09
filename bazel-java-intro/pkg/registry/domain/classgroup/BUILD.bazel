@@ -1,5 +1,13 @@
+# ClassGroup domain layer - the aggregate that groups students under a tutor teacher.
+#
+# ClassGroup depends on StudentId and TeacherId (identity-only targets from other domains).
+# It does NOT depend on the full Student or Teacher domains — only their IDs.
+# This keeps the dependency graph minimal and allows independent evolution.
+
 load("@rules_java//java:defs.bzl", "java_library", "java_test")
 
+# Domain library: ClassGroup aggregate + ClassGroupId and ClassGroupName value objects.
+# glob() automatically picks up all .java files, excluding test files.
 java_library(
     name = "domain",
     srcs = glob(
@@ -8,10 +16,12 @@ java_library(
     ),
     visibility = ["//visibility:public"],
     deps = [
-        "//pkg/registry/domain/student:id",
-        "//pkg/registry/domain/teacher:id",
+        "//pkg/registry/domain/student:id",  # Needs StudentId (students belong to a group)
+        "//pkg/registry/domain/teacher:id",   # Needs TeacherId (each group has a tutor)
     ],
 )
+
+# -- Tests --
 
 java_test(
     name = "ClassGroupIdTest",

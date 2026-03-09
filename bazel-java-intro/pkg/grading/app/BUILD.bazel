@@ -1,3 +1,10 @@
+# Grading application entry point - the Main.java that wires everything together.
+#
+# Uses Gson for JSON serialization and Commons Text StringSubstitutor for report templates.
+# Depends on registry's identity targets (:id) to reference students and teachers.
+#
+# Run with: bazel run //pkg/grading/app:main
+
 load("@rules_java//java:defs.bzl", "java_binary", "java_library")
 
 java_library(
@@ -5,11 +12,16 @@ java_library(
     srcs = glob(["com/masorange/grading/app/*.java"]),
     visibility = ["//visibility:public"],
     deps = [
-        "//jvm-deps:commons-text",
-        "//jvm-deps:gson",
+        # External libraries
+        "//jvm-deps:commons-text",  # StringSubstitutor for text templates
+        "//jvm-deps:gson",          # Gson for JSON serialization
+
+        # Grading layers
         "//pkg/grading/application",
         "//pkg/grading/domain",
         "//pkg/grading/infrastructure",
+
+        # Registry identity targets (only IDs, not full domains)
         "//pkg/registry/domain/student:id",
         "//pkg/registry/domain/teacher:id",
     ],

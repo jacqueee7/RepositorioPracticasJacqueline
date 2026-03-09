@@ -1,3 +1,9 @@
+# Teacher infrastructure layer - concrete implementations of repository interfaces.
+#
+# Contains:
+#   - InMemoryTeacherRepository: HashMap-based implementation of TeacherRepository
+#   - InMemoryTeachingAssignmentRepository: ArrayList-based implementation of TeachingAssignmentRepository
+
 load("@rules_java//java:defs.bzl", "java_library")
 
 java_library(
@@ -5,8 +11,8 @@ java_library(
     srcs = glob(["com/masorange/registry/infrastructure/teacher/*.java"]),
     visibility = ["//visibility:public"],
     deps = [
-        "//pkg/registry/application/teacher:application",
-        "//pkg/registry/domain/teacher:domain",
-        "//pkg/registry/domain/teacher:id",
+        "//pkg/registry/application/teacher:application",  # Implements TeacherRepository and TeachingAssignmentRepository
+        "//pkg/registry/domain/teacher:domain",            # Uses Teacher, TeachingAssignment
+        "//pkg/registry/domain/teacher:id",                # Uses TeacherId
     ],
 )

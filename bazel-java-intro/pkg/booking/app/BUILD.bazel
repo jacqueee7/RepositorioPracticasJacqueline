@@ -1,3 +1,10 @@
+# Booking application entry point - the Main.java that wires everything together.
+#
+# Uses Jackson for JSON serialization and Guava ImmutableList for room listings.
+# This deployable is fully independent — no dependencies on registry or grading.
+#
+# Run with: bazel run //pkg/booking/app:main
+
 load("@rules_java//java:defs.bzl", "java_binary", "java_library")
 
 java_library(
@@ -5,8 +12,11 @@ java_library(
     srcs = glob(["com/masorange/booking/app/*.java"]),
     visibility = ["//visibility:public"],
     deps = [
-        "//jvm-deps:guava",
-        "//jvm-deps:jackson",
+        # External libraries
+        "//jvm-deps:guava",    # ImmutableList for immutable room collections
+        "//jvm-deps:jackson",  # ObjectMapper for JSON serialization
+
+        # Booking layers
         "//pkg/booking/application",
         "//pkg/booking/domain",
         "//pkg/booking/infrastructure",

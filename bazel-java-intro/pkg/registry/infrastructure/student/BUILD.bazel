@@ -1,3 +1,9 @@
+# Student infrastructure layer - concrete implementations of repository interfaces.
+#
+# Contains InMemoryStudentRepository: a HashMap-based implementation of StudentRepository.
+# In a real project, this would be replaced with a database-backed implementation
+# (e.g., JPA, JDBC), but the domain and application layers would remain unchanged.
+
 load("@rules_java//java:defs.bzl", "java_library")
 
 java_library(
@@ -5,8 +11,8 @@ java_library(
     srcs = glob(["com/masorange/registry/infrastructure/student/*.java"]),
     visibility = ["//visibility:public"],
     deps = [
-        "//pkg/registry/application/student:application",
-        "//pkg/registry/domain/student:domain",
-        "//pkg/registry/domain/student:id",
+        "//pkg/registry/application/student:application",  # Implements StudentRepository interface
+        "//pkg/registry/domain/student:domain",            # Uses Student (stored in the map)
+        "//pkg/registry/domain/student:id",                # Uses StudentId (map key)
     ],
 )

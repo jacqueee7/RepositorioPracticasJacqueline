@@ -1,3 +1,13 @@
+# Booking domain layer - value objects for the room reservation bounded context.
+#
+# Contains:
+#   - RoomId: UUID-based room identifier
+#   - RoomName: validated room name (e.g., "Aula 101")
+#   - Capacity: positive integer representing max occupancy
+#   - Room: aggregate combining the three above
+#
+# This domain is completely independent — it has NO dependencies on registry or grading.
+
 load("@rules_java//java:defs.bzl", "java_library", "java_test")
 
 java_library(
@@ -8,6 +18,8 @@ java_library(
     ),
     visibility = ["//visibility:public"],
 )
+
+# -- Tests --
 
 java_test(
     name = "RoomIdTest",

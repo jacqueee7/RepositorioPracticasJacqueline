@@ -1,3 +1,11 @@
+# Teacher application layer - use cases and repository interfaces.
+#
+# Contains:
+#   - TeacherRepository: interface for persisting/finding teachers
+#   - TeachingAssignmentRepository: interface for persisting/finding teaching assignments
+#   - CreateTeacher: use case to create a new teacher
+#   - AssignSubject: use case to assign a subject to a teacher
+
 load("@rules_java//java:defs.bzl", "java_library", "java_test")
 
 java_library(
@@ -8,8 +16,8 @@ java_library(
     ),
     visibility = ["//visibility:public"],
     deps = [
-        "//pkg/registry/domain/teacher:domain",
-        "//pkg/registry/domain/teacher:id",
+        "//pkg/registry/domain/teacher:domain",  # Uses Teacher, TeacherName, SubjectName, TeachingAssignment
+        "//pkg/registry/domain/teacher:id",       # Uses TeacherId
     ],
 )
 

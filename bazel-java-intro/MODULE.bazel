@@ -1,6 +1,14 @@
+# Root of the Bazel workspace. Every Bazel project needs a MODULE.bazel file.
+# "module()" declares the name of this workspace so other modules can reference it.
 module(name = "mi_proyecto_java")
 
+# External Bazel module dependencies (downloaded automatically by Bazel):
+# - rules_java: provides java_library, java_binary, java_test rules
+# - rules_jvm_external: allows downloading Maven artifacts (JARs) from Maven Central
 bazel_dep(name = "rules_java", version = "7.3.0")
 bazel_dep(name = "rules_jvm_external", version = "6.2")
 
+# Maven dependencies are declared in a separate file for organization.
+# include() inlines the contents of the referenced file as if they were written here.
+# The file must be exported via exports_files() in its BUILD.bazel.
 include("//jvm-deps:maven.MODULE.bazel")

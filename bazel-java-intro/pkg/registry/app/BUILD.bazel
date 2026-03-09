@@ -1,26 +1,47 @@
+# Registry application entry point - the Main.java that wires everything together.
+#
+# This is the composition root: it instantiates concrete implementations (InMemory repositories),
+# creates use cases, and executes business operations.
+# Uses Jackson for JSON serialization and SLF4J/Logback for logging.
+#
+# Run with: bazel run //pkg/registry/app:main
+
 load("@rules_java//java:defs.bzl", "java_binary", "java_library")
 
+# Library target containing Main.java. Separated from java_binary so it can be
+# referenced by other targets if needed. Depends on ALL layers (domain, application,
+# infrastructure) plus external libraries (Jackson, Logback).
 java_library(
     name = "app_lib",
     srcs = glob(["com/masorange/registry/app/*.java"]),
     visibility = ["//visibility:public"],
     deps = [
-        "//jvm-deps:jackson",
-        "//jvm-deps:logging",
+        # External libraries
+        "//jvm-deps:jackson",   # ObjectMapper for JSON serialization
+        "//jvm-deps:logging",   # SLF4J Logger + Logback implementation
+
+        # Application layer (use cases + repository interfaces)
         "//pkg/registry/application/classgroup:application",
         "//pkg/registry/application/student:application",
         "//pkg/registry/application/teacher:application",
+
+        # Domain layer (entities and value objects)
         "//pkg/registry/domain/classgroup:domain",
         "//pkg/registry/domain/student:domain",
         "//pkg/registry/domain/student:id",
         "//pkg/registry/domain/teacher:domain",
         "//pkg/registry/domain/teacher:id",
+
+        # Infrastructure layer (concrete repository implementations)
         "//pkg/registry/infrastructure/classgroup:infrastructure",
         "//pkg/registry/infrastructure/student:infrastructure",
         "//pkg/registry/infrastructure/teacher:infrastructure",
     ],
 )
 
+# java_binary creates an executable JAR. runtime_deps means the dependency is only
+# needed at runtime (not at compile time), which is appropriate here since Main.java
+# is already compiled as part of :app_lib.
 java_binary(
     name = "main",
     main_class = "com.masorange.registry.app.Main",

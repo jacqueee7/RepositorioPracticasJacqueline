@@ -1,11 +1,22 @@
+# Teacher domain layer - contains the Teacher aggregate, TeachingAssignment, and value objects.
+#
+# Same pattern as student: two library targets (:id and :domain).
+#   :id     -> Only TeacherId (identity, no dependencies)
+#   :domain -> Teacher, TeacherName, SubjectName, TeachingAssignment (depends on :id)
+#
+# TeachingAssignment models which subject a teacher is assigned to teach.
+# SubjectName is a value object that wraps the raw subject string with validation.
+
 load("@rules_java//java:defs.bzl", "java_library", "java_test")
 
+# Identity-only target: just TeacherId. No dependencies.
 java_library(
     name = "id",
     srcs = ["com/masorange/registry/domain/teacher/TeacherId.java"],
     visibility = ["//visibility:public"],
 )
 
+# Full teacher domain: Teacher aggregate + related value objects.
 java_library(
     name = "domain",
     srcs = [
@@ -17,6 +28,8 @@ java_library(
     visibility = ["//visibility:public"],
     deps = [":id"],
 )
+
+# -- Tests --
 
 java_test(
     name = "TeacherIdTest",

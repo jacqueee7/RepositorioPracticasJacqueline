@@ -1,3 +1,8 @@
+# Grading infrastructure layer - concrete implementation of GradeRepository.
+#
+# Contains InMemoryGradeRepository: an ArrayList-based implementation that stores
+# StudentGrade objects in memory. Filters by StudentId when querying.
+
 load("@rules_java//java:defs.bzl", "java_library")
 
 java_library(
@@ -5,8 +10,8 @@ java_library(
     srcs = glob(["com/masorange/grading/infrastructure/*.java"]),
     visibility = ["//visibility:public"],
     deps = [
-        "//pkg/grading/application",
-        "//pkg/grading/domain",
-        "//pkg/registry/domain/student:id",
+        "//pkg/grading/application",         # Implements GradeRepository interface
+        "//pkg/grading/domain",              # Uses StudentGrade (stored in the list)
+        "//pkg/registry/domain/student:id",  # Uses StudentId (filter key)
     ],
 )

@@ -1,11 +1,25 @@
+# Student domain layer - contains the Student aggregate and its value objects.
+#
+# This package has TWO library targets:
+#   :id     -> Only StudentId (the identity value object, no dependencies)
+#   :domain -> Student + StudentName (depends on :id)
+#
+# WHY two targets? So that other deployables (grading, booking) can depend on
+# just the identity (:id) without pulling in the full student domain.
+# Example: grading needs StudentId to record grades, but does NOT need Student or StudentName.
+
 load("@rules_java//java:defs.bzl", "java_library", "java_test")
 
+# Identity-only target: just the StudentId value object (UUID-based identifier).
+# This has ZERO dependencies, making it safe for any module to depend on.
 java_library(
     name = "id",
     srcs = ["com/masorange/registry/domain/student/StudentId.java"],
     visibility = ["//visibility:public"],
 )
 
+# Full student domain: the Student aggregate and StudentName value object.
+# Depends on :id because Student contains a StudentId field.
 java_library(
     name = "domain",
     srcs = [
@@ -15,6 +29,10 @@ java_library(
     visibility = ["//visibility:public"],
     deps = [":id"],
 )
+
+# -- Tests --
+# Each test target compiles and runs a single test class.
+# size = "small" tells Bazel this test should finish quickly (< 1 minute).
 
 java_test(
     name = "StudentIdTest",

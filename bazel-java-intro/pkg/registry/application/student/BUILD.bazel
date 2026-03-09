@@ -1,5 +1,16 @@
+# Student application layer - use cases and repository interface.
+#
+# Contains:
+#   - StudentRepository: interface (port) that defines how to persist/find students
+#   - CreateStudent: use case that creates a student and saves it via the repository
+#
+# This layer depends on the domain (it uses Student, StudentId, StudentName)
+# but does NOT depend on infrastructure (it doesn't know about InMemoryStudentRepository).
+
 load("@rules_java//java:defs.bzl", "java_library", "java_test")
 
+# Application library: use cases + repository interface.
+# exclude = [...*Test.java] prevents test files from being included in the production JAR.
 java_library(
     name = "application",
     srcs = glob(
@@ -8,11 +19,14 @@ java_library(
     ),
     visibility = ["//visibility:public"],
     deps = [
-        "//pkg/registry/domain/student:domain",
-        "//pkg/registry/domain/student:id",
+        "//pkg/registry/domain/student:domain",  # Uses Student, StudentName
+        "//pkg/registry/domain/student:id",       # Uses StudentId
     ],
 )
 
+# Test for the CreateStudent use case.
+# Note: the test depends on :infrastructure to get InMemoryStudentRepository.
+# This is intentional — we use real implementations instead of mocks for unit tests.
 java_test(
     name = "CreateStudentTest",
     srcs = ["com/masorange/registry/application/student/CreateStudentTest.java"],

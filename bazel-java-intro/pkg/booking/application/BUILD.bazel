@@ -1,3 +1,9 @@
+# Booking application layer - use cases and repository interface.
+#
+# Contains:
+#   - RoomRepository: interface for persisting/finding rooms
+#   - CreateRoom: use case to create a new room with name and capacity
+
 load("@rules_java//java:defs.bzl", "java_library", "java_test")
 
 java_library(
@@ -8,7 +14,7 @@ java_library(
     ),
     visibility = ["//visibility:public"],
     deps = [
-        "//pkg/booking/domain",
+        "//pkg/booking/domain",  # Uses Room, RoomId, RoomName, Capacity
     ],
 )
 

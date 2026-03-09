@@ -1,7 +1,15 @@
+# This BUILD file groups Maven artifacts into named targets so that other modules
+# can depend on "//jvm-deps:jackson" instead of the verbose "@maven//:com_fasterxml_..."
+# This centralizes version management: if you update a library, you only change it here.
+
 load("@rules_java//java:defs.bzl", "java_library")
 
+# exports_files() makes maven.MODULE.bazel visible to the include() in MODULE.bazel.
+# Without this, Bazel would not be able to find the file from another package.
 exports_files(["maven.MODULE.bazel"])
 
+# -- Jackson: JSON serialization library (3 JARs that must always be the same version) --
+# Used by: registry (ObjectMapper), booking (ObjectMapper)
 java_library(
     name = "jackson",
     exports = [
@@ -12,6 +20,8 @@ java_library(
     visibility = ["//visibility:public"],
 )
 
+# -- Logging: SLF4J facade + Logback implementation --
+# Used by: registry (Logger, LOG.info)
 java_library(
     name = "logging",
     exports = [
@@ -21,24 +31,33 @@ java_library(
     visibility = ["//visibility:public"],
 )
 
+# -- Gson: alternative JSON serialization library by Google --
+# Used by: grading (Gson, GsonBuilder)
 java_library(
     name = "gson",
     exports = ["@maven//:com_google_code_gson_gson"],
     visibility = ["//visibility:public"],
 )
 
+# -- Commons Text: text manipulation utilities (StringSubstitutor for templates) --
+# Used by: grading (StringSubstitutor for report formatting)
 java_library(
     name = "commons-text",
     exports = ["@maven//:org_apache_commons_commons_text"],
     visibility = ["//visibility:public"],
 )
 
+# -- Guava: Google's core Java library (ImmutableList, ImmutableMap, etc.) --
+# Used by: booking (ImmutableList for room listings)
 java_library(
     name = "guava",
     exports = ["@maven//:com_google_guava_guava"],
     visibility = ["//visibility:public"],
 )
 
+# -- JUnit 4: testing framework --
+# Used by: all test targets across the entire project
+# testonly = True means this target can only be used by java_test, never by production code.
 java_library(
     name = "junit",
     testonly = True,

@@ -1,15 +1,41 @@
+# This file is included from the root MODULE.bazel via include().
+# It configures all Maven (external Java library) dependencies for the entire project.
+
+# use_extension() loads the Maven extension from rules_jvm_external,
+# which knows how to download JARs from Maven Central.
 maven = use_extension("@rules_jvm_external//:extensions.bzl", "maven")
+
+# maven.install() declares which Maven artifacts (JARs) to download.
+# Format: "group_id:artifact_id:version"
+# IMPORTANT: Some versions are intentionally old and contain known CVEs for training purposes.
 maven.install(
     artifacts = [
+        # Testing framework
         "junit:junit:4.13.2",
+
+        # JSON serialization - Jackson (used by registry and booking)
+        # WARNING: version 2.13.4 has CVE-2022-42003 (DoS via UNWRAP_SINGLE_VALUE_ARRAYS)
         "com.fasterxml.jackson.core:jackson-databind:2.13.4",
         "com.fasterxml.jackson.core:jackson-core:2.13.4",
         "com.fasterxml.jackson.core:jackson-annotations:2.13.4",
+
+        # JSON serialization - Gson (used by grading)
         "com.google.code.gson:gson:2.10.1",
+
+        # Logging - SLF4J API + Logback implementation (used by registry)
+        # WARNING: logback 1.2.11 has CVE-2023-6378 (DoS via serialization)
         "org.slf4j:slf4j-api:1.7.36",
         "ch.qos.logback:logback-classic:1.2.11",
+
+        # Text templating - Commons Text (used by grading)
+        # WARNING: version 1.9 has CVE-2022-42889 "Text4Shell" (remote code execution)
         "org.apache.commons:commons-text:1.9",
+
+        # Immutable collections - Guava (used by booking)
         "com.google.guava:guava:31.1-jre",
     ],
 )
+
+# use_repo() makes the downloaded Maven artifacts available as @maven//...
+# Without this line, Bazel wouldn't know where to find the JARs.
 use_repo(maven, "maven")
