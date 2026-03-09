@@ -1,0 +1,45 @@
+load("@rules_java//java:defs.bzl", "java_library", "java_test")
+
+java_library(
+    name = "application",
+    srcs = glob(
+        ["com/masorange/grading/application/*.java"],
+        exclude = ["com/masorange/grading/application/*Test.java"],
+    ),
+    visibility = ["//visibility:public"],
+    deps = [
+        "//pkg/grading/domain",
+        "//pkg/registry/domain/student:id",
+        "//pkg/registry/domain/teacher:id",
+    ],
+)
+
+java_test(
+    name = "RecordGradeTest",
+    srcs = ["com/masorange/grading/application/RecordGradeTest.java"],
+    test_class = "com.masorange.grading.application.RecordGradeTest",
+    size = "small",
+    deps = [
+        ":application",
+        "//pkg/grading/domain",
+        "//pkg/grading/infrastructure",
+        "//pkg/registry/domain/student:id",
+        "//pkg/registry/domain/teacher:id",
+        "//jvm-deps:junit",
+    ],
+)
+
+java_test(
+    name = "CalculateAverageTest",
+    srcs = ["com/masorange/grading/application/CalculateAverageTest.java"],
+    test_class = "com.masorange.grading.application.CalculateAverageTest",
+    size = "small",
+    deps = [
+        ":application",
+        "//pkg/grading/domain",
+        "//pkg/grading/infrastructure",
+        "//pkg/registry/domain/student:id",
+        "//pkg/registry/domain/teacher:id",
+        "//jvm-deps:junit",
+    ],
+)

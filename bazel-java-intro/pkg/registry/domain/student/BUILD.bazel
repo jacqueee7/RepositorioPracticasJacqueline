@@ -1,0 +1,51 @@
+load("@rules_java//java:defs.bzl", "java_library", "java_test")
+
+java_library(
+    name = "id",
+    srcs = ["com/masorange/registry/domain/student/StudentId.java"],
+    visibility = ["//visibility:public"],
+)
+
+java_library(
+    name = "domain",
+    srcs = [
+        "com/masorange/registry/domain/student/Student.java",
+        "com/masorange/registry/domain/student/StudentName.java",
+    ],
+    visibility = ["//visibility:public"],
+    deps = [":id"],
+)
+
+java_test(
+    name = "StudentIdTest",
+    srcs = ["com/masorange/registry/domain/student/StudentIdTest.java"],
+    test_class = "com.masorange.registry.domain.student.StudentIdTest",
+    size = "small",
+    deps = [
+        ":id",
+        "//jvm-deps:junit",
+    ],
+)
+
+java_test(
+    name = "StudentNameTest",
+    srcs = ["com/masorange/registry/domain/student/StudentNameTest.java"],
+    test_class = "com.masorange.registry.domain.student.StudentNameTest",
+    size = "small",
+    deps = [
+        ":domain",
+        "//jvm-deps:junit",
+    ],
+)
+
+java_test(
+    name = "StudentTest",
+    srcs = ["com/masorange/registry/domain/student/StudentTest.java"],
+    test_class = "com.masorange.registry.domain.student.StudentTest",
+    size = "small",
+    deps = [
+        ":domain",
+        ":id",
+        "//jvm-deps:junit",
+    ],
+)

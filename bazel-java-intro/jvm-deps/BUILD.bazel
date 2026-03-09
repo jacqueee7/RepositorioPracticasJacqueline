@@ -1,0 +1,47 @@
+load("@rules_java//java:defs.bzl", "java_library")
+
+exports_files(["maven.MODULE.bazel"])
+
+java_library(
+    name = "jackson",
+    exports = [
+        "@maven//:com_fasterxml_jackson_core_jackson_annotations",
+        "@maven//:com_fasterxml_jackson_core_jackson_core",
+        "@maven//:com_fasterxml_jackson_core_jackson_databind",
+    ],
+    visibility = ["//visibility:public"],
+)
+
+java_library(
+    name = "logging",
+    exports = [
+        "@maven//:ch_qos_logback_logback_classic",
+        "@maven//:org_slf4j_slf4j_api",
+    ],
+    visibility = ["//visibility:public"],
+)
+
+java_library(
+    name = "gson",
+    exports = ["@maven//:com_google_code_gson_gson"],
+    visibility = ["//visibility:public"],
+)
+
+java_library(
+    name = "commons-text",
+    exports = ["@maven//:org_apache_commons_commons_text"],
+    visibility = ["//visibility:public"],
+)
+
+java_library(
+    name = "guava",
+    exports = ["@maven//:com_google_guava_guava"],
+    visibility = ["//visibility:public"],
+)
+
+java_library(
+    name = "junit",
+    testonly = True,
+    exports = ["@maven//:junit_junit"],
+    visibility = ["//visibility:public"],
+)

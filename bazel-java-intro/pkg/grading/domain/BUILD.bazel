@@ -1,0 +1,49 @@
+load("@rules_java//java:defs.bzl", "java_library", "java_test")
+
+java_library(
+    name = "domain",
+    srcs = glob(
+        ["com/masorange/grading/domain/*.java"],
+        exclude = ["com/masorange/grading/domain/*Test.java"],
+    ),
+    visibility = ["//visibility:public"],
+    deps = [
+        "//pkg/registry/domain/student:id",
+        "//pkg/registry/domain/teacher:id",
+    ],
+)
+
+java_test(
+    name = "GradeTest",
+    srcs = ["com/masorange/grading/domain/GradeTest.java"],
+    test_class = "com.masorange.grading.domain.GradeTest",
+    size = "small",
+    deps = [
+        ":domain",
+        "//jvm-deps:junit",
+    ],
+)
+
+java_test(
+    name = "SubjectTest",
+    srcs = ["com/masorange/grading/domain/SubjectTest.java"],
+    test_class = "com.masorange.grading.domain.SubjectTest",
+    size = "small",
+    deps = [
+        ":domain",
+        "//jvm-deps:junit",
+    ],
+)
+
+java_test(
+    name = "StudentGradeTest",
+    srcs = ["com/masorange/grading/domain/StudentGradeTest.java"],
+    test_class = "com.masorange.grading.domain.StudentGradeTest",
+    size = "small",
+    deps = [
+        ":domain",
+        "//pkg/registry/domain/student:id",
+        "//pkg/registry/domain/teacher:id",
+        "//jvm-deps:junit",
+    ],
+)

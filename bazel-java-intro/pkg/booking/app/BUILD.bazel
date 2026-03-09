@@ -1,0 +1,22 @@
+load("@rules_java//java:defs.bzl", "java_binary", "java_library")
+
+java_library(
+    name = "app_lib",
+    srcs = glob(["com/masorange/booking/app/*.java"]),
+    visibility = ["//visibility:public"],
+    deps = [
+        "//jvm-deps:guava",
+        "//jvm-deps:jackson",
+        "//pkg/booking/application",
+        "//pkg/booking/domain",
+        "//pkg/booking/infrastructure",
+    ],
+)
+
+java_binary(
+    name = "main",
+    main_class = "com.masorange.booking.app.Main",
+    runtime_deps = [
+        ":app_lib",
+    ],
+)

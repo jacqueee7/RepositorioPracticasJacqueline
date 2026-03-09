@@ -1,0 +1,54 @@
+load("@rules_java//java:defs.bzl", "java_library", "java_test")
+
+java_library(
+    name = "domain",
+    srcs = glob(
+        ["com/masorange/booking/domain/*.java"],
+        exclude = ["com/masorange/booking/domain/*Test.java"],
+    ),
+    visibility = ["//visibility:public"],
+)
+
+java_test(
+    name = "RoomIdTest",
+    srcs = ["com/masorange/booking/domain/RoomIdTest.java"],
+    test_class = "com.masorange.booking.domain.RoomIdTest",
+    size = "small",
+    deps = [
+        ":domain",
+        "//jvm-deps:junit",
+    ],
+)
+
+java_test(
+    name = "RoomNameTest",
+    srcs = ["com/masorange/booking/domain/RoomNameTest.java"],
+    test_class = "com.masorange.booking.domain.RoomNameTest",
+    size = "small",
+    deps = [
+        ":domain",
+        "//jvm-deps:junit",
+    ],
+)
+
+java_test(
+    name = "CapacityTest",
+    srcs = ["com/masorange/booking/domain/CapacityTest.java"],
+    test_class = "com.masorange.booking.domain.CapacityTest",
+    size = "small",
+    deps = [
+        ":domain",
+        "//jvm-deps:junit",
+    ],
+)
+
+java_test(
+    name = "RoomTest",
+    srcs = ["com/masorange/booking/domain/RoomTest.java"],
+    test_class = "com.masorange.booking.domain.RoomTest",
+    size = "small",
+    deps = [
+        ":domain",
+        "//jvm-deps:junit",
+    ],
+)

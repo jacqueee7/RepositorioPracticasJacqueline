@@ -1,0 +1,24 @@
+load("@rules_java//java:defs.bzl", "java_binary", "java_library")
+
+java_library(
+    name = "app_lib",
+    srcs = glob(["com/masorange/grading/app/*.java"]),
+    visibility = ["//visibility:public"],
+    deps = [
+        "//jvm-deps:commons-text",
+        "//jvm-deps:gson",
+        "//pkg/grading/application",
+        "//pkg/grading/domain",
+        "//pkg/grading/infrastructure",
+        "//pkg/registry/domain/student:id",
+        "//pkg/registry/domain/teacher:id",
+    ],
+)
+
+java_binary(
+    name = "main",
+    main_class = "com.masorange.grading.app.Main",
+    runtime_deps = [
+        ":app_lib",
+    ],
+)

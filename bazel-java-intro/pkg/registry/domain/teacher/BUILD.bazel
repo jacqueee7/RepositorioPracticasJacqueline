@@ -1,0 +1,76 @@
+load("@rules_java//java:defs.bzl", "java_library", "java_test")
+
+java_library(
+    name = "id",
+    srcs = ["com/masorange/registry/domain/teacher/TeacherId.java"],
+    visibility = ["//visibility:public"],
+)
+
+java_library(
+    name = "domain",
+    srcs = [
+        "com/masorange/registry/domain/teacher/SubjectName.java",
+        "com/masorange/registry/domain/teacher/Teacher.java",
+        "com/masorange/registry/domain/teacher/TeacherName.java",
+        "com/masorange/registry/domain/teacher/TeachingAssignment.java",
+    ],
+    visibility = ["//visibility:public"],
+    deps = [":id"],
+)
+
+java_test(
+    name = "TeacherIdTest",
+    srcs = ["com/masorange/registry/domain/teacher/TeacherIdTest.java"],
+    test_class = "com.masorange.registry.domain.teacher.TeacherIdTest",
+    size = "small",
+    deps = [
+        ":id",
+        "//jvm-deps:junit",
+    ],
+)
+
+java_test(
+    name = "TeacherNameTest",
+    srcs = ["com/masorange/registry/domain/teacher/TeacherNameTest.java"],
+    test_class = "com.masorange.registry.domain.teacher.TeacherNameTest",
+    size = "small",
+    deps = [
+        ":domain",
+        "//jvm-deps:junit",
+    ],
+)
+
+java_test(
+    name = "TeacherTest",
+    srcs = ["com/masorange/registry/domain/teacher/TeacherTest.java"],
+    test_class = "com.masorange.registry.domain.teacher.TeacherTest",
+    size = "small",
+    deps = [
+        ":domain",
+        ":id",
+        "//jvm-deps:junit",
+    ],
+)
+
+java_test(
+    name = "SubjectNameTest",
+    srcs = ["com/masorange/registry/domain/teacher/SubjectNameTest.java"],
+    test_class = "com.masorange.registry.domain.teacher.SubjectNameTest",
+    size = "small",
+    deps = [
+        ":domain",
+        "//jvm-deps:junit",
+    ],
+)
+
+java_test(
+    name = "TeachingAssignmentTest",
+    srcs = ["com/masorange/registry/domain/teacher/TeachingAssignmentTest.java"],
+    test_class = "com.masorange.registry.domain.teacher.TeachingAssignmentTest",
+    size = "small",
+    deps = [
+        ":domain",
+        ":id",
+        "//jvm-deps:junit",
+    ],
+)

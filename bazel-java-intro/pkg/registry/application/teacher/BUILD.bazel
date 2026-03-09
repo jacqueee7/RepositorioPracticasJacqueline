@@ -1,0 +1,41 @@
+load("@rules_java//java:defs.bzl", "java_library", "java_test")
+
+java_library(
+    name = "application",
+    srcs = glob(
+        ["com/masorange/registry/application/teacher/*.java"],
+        exclude = ["com/masorange/registry/application/teacher/*Test.java"],
+    ),
+    visibility = ["//visibility:public"],
+    deps = [
+        "//pkg/registry/domain/teacher:domain",
+        "//pkg/registry/domain/teacher:id",
+    ],
+)
+
+java_test(
+    name = "CreateTeacherTest",
+    srcs = ["com/masorange/registry/application/teacher/CreateTeacherTest.java"],
+    test_class = "com.masorange.registry.application.teacher.CreateTeacherTest",
+    size = "small",
+    deps = [
+        ":application",
+        "//pkg/registry/domain/teacher:domain",
+        "//pkg/registry/infrastructure/teacher:infrastructure",
+        "//jvm-deps:junit",
+    ],
+)
+
+java_test(
+    name = "AssignSubjectTest",
+    srcs = ["com/masorange/registry/application/teacher/AssignSubjectTest.java"],
+    test_class = "com.masorange.registry.application.teacher.AssignSubjectTest",
+    size = "small",
+    deps = [
+        ":application",
+        "//pkg/registry/domain/teacher:domain",
+        "//pkg/registry/domain/teacher:id",
+        "//pkg/registry/infrastructure/teacher:infrastructure",
+        "//jvm-deps:junit",
+    ],
+)

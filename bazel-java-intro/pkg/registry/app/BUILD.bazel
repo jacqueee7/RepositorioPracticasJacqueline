@@ -1,0 +1,30 @@
+load("@rules_java//java:defs.bzl", "java_binary", "java_library")
+
+java_library(
+    name = "app_lib",
+    srcs = glob(["com/masorange/registry/app/*.java"]),
+    visibility = ["//visibility:public"],
+    deps = [
+        "//jvm-deps:jackson",
+        "//jvm-deps:logging",
+        "//pkg/registry/application/classgroup:application",
+        "//pkg/registry/application/student:application",
+        "//pkg/registry/application/teacher:application",
+        "//pkg/registry/domain/classgroup:domain",
+        "//pkg/registry/domain/student:domain",
+        "//pkg/registry/domain/student:id",
+        "//pkg/registry/domain/teacher:domain",
+        "//pkg/registry/domain/teacher:id",
+        "//pkg/registry/infrastructure/classgroup:infrastructure",
+        "//pkg/registry/infrastructure/student:infrastructure",
+        "//pkg/registry/infrastructure/teacher:infrastructure",
+    ],
+)
+
+java_binary(
+    name = "main",
+    main_class = "com.masorange.registry.app.Main",
+    runtime_deps = [
+        ":app_lib",
+    ],
+)

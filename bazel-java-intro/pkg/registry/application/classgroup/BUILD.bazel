@@ -1,0 +1,44 @@
+load("@rules_java//java:defs.bzl", "java_library", "java_test")
+
+java_library(
+    name = "application",
+    srcs = glob(
+        ["com/masorange/registry/application/classgroup/*.java"],
+        exclude = ["com/masorange/registry/application/classgroup/*Test.java"],
+    ),
+    visibility = ["//visibility:public"],
+    deps = [
+        "//pkg/registry/domain/classgroup:domain",
+        "//pkg/registry/domain/student:id",
+        "//pkg/registry/domain/teacher:id",
+    ],
+)
+
+java_test(
+    name = "CreateClassGroupTest",
+    srcs = ["com/masorange/registry/application/classgroup/CreateClassGroupTest.java"],
+    test_class = "com.masorange.registry.application.classgroup.CreateClassGroupTest",
+    size = "small",
+    deps = [
+        ":application",
+        "//pkg/registry/domain/classgroup:domain",
+        "//pkg/registry/domain/teacher:id",
+        "//pkg/registry/infrastructure/classgroup:infrastructure",
+        "//jvm-deps:junit",
+    ],
+)
+
+java_test(
+    name = "AddStudentToClassGroupTest",
+    srcs = ["com/masorange/registry/application/classgroup/AddStudentToClassGroupTest.java"],
+    test_class = "com.masorange.registry.application.classgroup.AddStudentToClassGroupTest",
+    size = "small",
+    deps = [
+        ":application",
+        "//pkg/registry/domain/classgroup:domain",
+        "//pkg/registry/domain/student:id",
+        "//pkg/registry/domain/teacher:id",
+        "//pkg/registry/infrastructure/classgroup:infrastructure",
+        "//jvm-deps:junit",
+    ],
+)

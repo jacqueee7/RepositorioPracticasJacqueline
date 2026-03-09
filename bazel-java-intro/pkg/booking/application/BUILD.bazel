@@ -1,0 +1,26 @@
+load("@rules_java//java:defs.bzl", "java_library", "java_test")
+
+java_library(
+    name = "application",
+    srcs = glob(
+        ["com/masorange/booking/application/*.java"],
+        exclude = ["com/masorange/booking/application/*Test.java"],
+    ),
+    visibility = ["//visibility:public"],
+    deps = [
+        "//pkg/booking/domain",
+    ],
+)
+
+java_test(
+    name = "CreateRoomTest",
+    srcs = ["com/masorange/booking/application/CreateRoomTest.java"],
+    test_class = "com.masorange.booking.application.CreateRoomTest",
+    size = "small",
+    deps = [
+        ":application",
+        "//pkg/booking/domain",
+        "//pkg/booking/infrastructure",
+        "//jvm-deps:junit",
+    ],
+)

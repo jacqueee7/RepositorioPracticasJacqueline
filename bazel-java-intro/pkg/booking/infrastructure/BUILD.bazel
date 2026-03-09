@@ -1,0 +1,11 @@
+load("@rules_java//java:defs.bzl", "java_library")
+
+java_library(
+    name = "infrastructure",
+    srcs = glob(["com/masorange/booking/infrastructure/*.java"]),
+    visibility = ["//visibility:public"],
+    deps = [
+        "//pkg/booking/application",
+        "//pkg/booking/domain",
+    ],
+)

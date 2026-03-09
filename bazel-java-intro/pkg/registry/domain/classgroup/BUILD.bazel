@@ -1,0 +1,49 @@
+load("@rules_java//java:defs.bzl", "java_library", "java_test")
+
+java_library(
+    name = "domain",
+    srcs = glob(
+        ["com/masorange/registry/domain/classgroup/*.java"],
+        exclude = ["com/masorange/registry/domain/classgroup/*Test.java"],
+    ),
+    visibility = ["//visibility:public"],
+    deps = [
+        "//pkg/registry/domain/student:id",
+        "//pkg/registry/domain/teacher:id",
+    ],
+)
+
+java_test(
+    name = "ClassGroupIdTest",
+    srcs = ["com/masorange/registry/domain/classgroup/ClassGroupIdTest.java"],
+    test_class = "com.masorange.registry.domain.classgroup.ClassGroupIdTest",
+    size = "small",
+    deps = [
+        ":domain",
+        "//jvm-deps:junit",
+    ],
+)
+
+java_test(
+    name = "ClassGroupNameTest",
+    srcs = ["com/masorange/registry/domain/classgroup/ClassGroupNameTest.java"],
+    test_class = "com.masorange.registry.domain.classgroup.ClassGroupNameTest",
+    size = "small",
+    deps = [
+        ":domain",
+        "//jvm-deps:junit",
+    ],
+)
+
+java_test(
+    name = "ClassGroupTest",
+    srcs = ["com/masorange/registry/domain/classgroup/ClassGroupTest.java"],
+    test_class = "com.masorange.registry.domain.classgroup.ClassGroupTest",
+    size = "small",
+    deps = [
+        ":domain",
+        "//pkg/registry/domain/student:id",
+        "//pkg/registry/domain/teacher:id",
+        "//jvm-deps:junit",
+    ],
+)

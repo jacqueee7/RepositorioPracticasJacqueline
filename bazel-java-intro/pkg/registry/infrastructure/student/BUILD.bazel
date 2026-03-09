@@ -1,0 +1,12 @@
+load("@rules_java//java:defs.bzl", "java_library")
+
+java_library(
+    name = "infrastructure",
+    srcs = glob(["com/masorange/registry/infrastructure/student/*.java"]),
+    visibility = ["//visibility:public"],
+    deps = [
+        "//pkg/registry/application/student:application",
+        "//pkg/registry/domain/student:domain",
+        "//pkg/registry/domain/student:id",
+    ],
+)
