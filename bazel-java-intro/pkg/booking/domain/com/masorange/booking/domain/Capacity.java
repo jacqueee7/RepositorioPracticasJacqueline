@@ -7,7 +7,7 @@ public final class Capacity {
     private final int value;
 
     private Capacity(int value) {
-        if (value = 0) {
+        if (value < 0) {
             throw new IllegalArgumentException("Capacity must be greater than 0, got: " + value);
         }
         this.value = value;

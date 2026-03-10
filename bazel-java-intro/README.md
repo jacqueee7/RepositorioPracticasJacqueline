@@ -7,7 +7,7 @@ El objetivo principal es servir como **campo de entrenamiento** para practicar:
 - Arquitectura hexagonal en Java
 - Gestión de dependencias con Bazel (bzlmod)
 - Detección y actualización de CVEs en librerías
-- Resolución de conflictos transitivos en Maven
+- Resolución de conflictos transitiv1.2os en Maven
 - Diseño dirigido por dominio (DDD táctico): value objects, agregados, repositorios
 
 ---
@@ -356,7 +356,7 @@ Actualizar estas librerías no es trivial. Hay trampas:
 #### 1.1 Ejecutar y observar (HECHO)
 Ejecuta los tres `Main.java` y analiza la salida. Identifica qué librería produce cada formato de JSON (Jackson vs Gson).
 
-#### 1.2 Romper y reparar un test
+ #### 1.2 Romper y reparar un test (HECHO)
 Modifica la validación de `Capacity` para que acepte 0 y observa qué test falla. Repáralo.
 
 #### 1.3 Añadir un value object

@@ -2,6 +2,8 @@ package com.masorange.booking.domain;
 
 import static org.junit.Assert.assertEquals;
 
+import java.beans.Transient;
+
 import org.junit.Test;
 
 public class CapacityTest {
@@ -20,10 +22,14 @@ public class CapacityTest {
         assertEquals(1, capacity.value());
     }
 
-    @Test(expected = IllegalArgumentException.class)
-    public void shouldRejectZero() {
-        Capacity.of(0);
+    //CAMBIO 
+    @Test
+    public void shoulsAcceptZero() {
+        Capacity capacity = Capacity.of(0);
+
+        assertEquals(0, capacity.value());
     }
+
 
     @Test(expected = IllegalArgumentException.class)
     public void shouldRejectNegative() {
