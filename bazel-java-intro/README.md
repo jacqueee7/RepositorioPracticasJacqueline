@@ -353,7 +353,7 @@ Actualizar estas librerías no es trivial. Hay trampas:
 
 ### Nivel 1 — Familiarización
 
-#### 1.1 Ejecutar y observar
+#### 1.1 Ejecutar y observar (HECHO)
 Ejecuta los tres `Main.java` y analiza la salida. Identifica qué librería produce cada formato de JSON (Jackson vs Gson).
 
 #### 1.2 Romper y reparar un test
