@@ -359,20 +359,20 @@ Ejecuta los tres `Main.java` y analiza la salida. Identifica qué librería prod
  #### 1.2 Romper y reparar un test (HECHO)
 Modifica la validación de `Capacity` para que acepte 0 y observa qué test falla. Repáralo.
 
-#### 1.3 Añadir un value object
+#### 1.3 Añadir un value object (HECHO)
 Crea `Email` como value object en `registry/domain/student` con validación de formato. Añádelo como campo opcional a `Student`.
 
 ---
 
 ### Nivel 2 — Dependencias y CVEs
 
-#### 2.1 Corregir la CVE de Commons Text
+#### 2.1 Corregir la CVE de Commons Text (HECHO)
 Actualiza `commons-text` de 1.9 a 1.10.0+ en `maven.MODULE.bazel`. Verifica que grading sigue compilando y sus tests pasan.
 
-#### 2.2 Corregir la CVE de Jackson
+#### 2.2 Corregir la CVE de Jackson (HECHO)
 Actualiza las 3 librerías de Jackson a 2.15.x o superior. Verifica que registry y booking siguen funcionando. Observa que las tres deben ir sincronizadas.
 
-#### 2.3 Corregir la CVE de Logback (la trampa)
+#### 2.3 Corregir la CVE de Logback (la trampa) -> ME FALTA UNA COSA MIRAR MIÉRCOLES!!!!!!
 Intenta actualizar logback de 1.2.11 a 1.4.x. Observa el error de compilación. Investiga por qué y actualiza también SLF4J a 2.x.
 
 #### 2.4 Auditoría completa
