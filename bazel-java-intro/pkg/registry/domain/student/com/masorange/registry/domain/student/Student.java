@@ -6,16 +6,22 @@ public final class Student {
 
     private final StudentId id;
     private final StudentName name;
+    private final Email email;
 
-    private Student(StudentId id, StudentName name) {
+    private Student(StudentId id, StudentName name, Email email) {
         Objects.requireNonNull(id, "Student id must not be null");
         Objects.requireNonNull(name, "Student name must not be null");
         this.id = id;
         this.name = name;
+        this.email = email;
     }
 
     public static Student create(StudentId id, StudentName name) {
-        return new Student(id, name);
+        return new Student(id, name, null);
+    }
+
+    public static Student create(StudentId id, StudentName name, Email email) {
+        return new Student(id, name, email);
     }
 
     public StudentId id() {
@@ -24,6 +30,10 @@ public final class Student {
 
     public StudentName name() {
         return name;
+    }
+
+    public Email email() {
+        return email;
     }
 
     @Override
@@ -41,6 +51,6 @@ public final class Student {
 
     @Override
     public String toString() {
-        return "Student{id=" + id + ", name=" + name + "}";
+        return "Student{id=" + id + ", name=" + name + ", email=" + email + "}";
     }
 }

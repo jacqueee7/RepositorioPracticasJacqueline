@@ -2,7 +2,7 @@
 #
 # This package has TWO library targets:
 #   :id     -> Only StudentId (the identity value object, no dependencies)
-#   :domain -> Student + StudentName (depends on :id)
+#   :domain -> Student + StudentName + Email (depends on :id)
 #
 # WHY two targets? So that other deployables (grading, booking) can depend on
 # just the identity (:id) without pulling in the full student domain.
@@ -25,6 +25,7 @@ java_library(
     srcs = [
         "com/masorange/registry/domain/student/Student.java",
         "com/masorange/registry/domain/student/StudentName.java",
+        "com/masorange/registry/domain/student/Email.java", # <-- ¡AQUÍ ESTÁ NUESTRO NUEVO INVITADO!
     ],
     visibility = ["//visibility:public"],
     deps = [":id"],
