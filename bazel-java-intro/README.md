@@ -372,8 +372,9 @@ Actualiza `commons-text` de 1.9 a 1.10.0+ en `maven.MODULE.bazel`. Verifica que 
 #### 2.2 Corregir la CVE de Jackson (HECHO)
 Actualiza las 3 librerías de Jackson a 2.15.x o superior. Verifica que registry y booking siguen funcionando. Observa que las tres deben ir sincronizadas.
 
-#### 2.3 Corregir la CVE de Logback (la trampa) -> ME FALTA UNA COSA MIRAR MIÉRCOLES!!!!!!
-Intenta actualizar logback de 1.2.11 a 1.4.x. Observa el error de compilación. Investiga por qué y actualiza también SLF4J a 2.x.
+#### 2.3 Corregir la CVE de Logback (la trampa) (HECHO)
+Actualizado `logback-classic` a 1.4.11 y `slf4j-api` a 2.0.7 en `jvm-deps/maven.MODULE.bazel`.
+Si se sube Logback sin subir SLF4J, la compilación falla por incompatibilidad de mayor versión: Logback 1.4 requiere SLF4J 2.x. La solución es alinear ambos a 2.x y recompilar.
 
 #### 2.4 Auditoría completa
 Corrige las tres CVEs en un solo cambio. Ejecuta `bazel build //...` y `bazel test //...` tras cada paso.
