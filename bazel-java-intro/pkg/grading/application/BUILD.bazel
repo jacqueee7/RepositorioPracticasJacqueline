@@ -52,3 +52,18 @@ java_test(
         "//jvm-deps:junit",
     ],
 )
+
+java_test(
+    name = "CalculateExtremesTest",
+    srcs = ["com/masorange/grading/application/CalculateExtremesTest.java"],
+    test_class = "com.masorange.grading.application.CalculateExtremesTest",
+    size = "small",
+    deps = [
+        ":application",
+        "//pkg/grading/domain:domain",
+        "//pkg/grading/infrastructure:infrastructure",
+        "//pkg/registry/domain/student:id",
+        "//pkg/registry/domain/teacher:id", # <--- AÑADE ESTA LÍNEA
+        "//jvm-deps:junit",
+    ],
+)
