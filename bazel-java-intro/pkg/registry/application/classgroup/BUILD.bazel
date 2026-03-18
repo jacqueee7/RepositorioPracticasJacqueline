@@ -49,3 +49,18 @@ java_test(
         "//jvm-deps:junit",
     ],
 )
+
+java_test(
+    name = "ListStudentsByClassGroupTest",
+    srcs = ["com/masorange/registry/application/classgroup/ListStudentsByClassGroupTest.java"],
+    test_class = "com.masorange.registry.application.classgroup.ListStudentsByClassGroupTest",
+    size = "small",
+    deps = [
+        ":application",
+        "//pkg/registry/domain/classgroup:domain",
+        "//pkg/registry/domain/student:id",
+        "//pkg/registry/domain/teacher:id",  
+        "//pkg/registry/infrastructure/classgroup:infrastructure",
+        "//jvm-deps:junit",
+    ],
+)
