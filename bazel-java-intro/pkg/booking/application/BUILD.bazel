@@ -30,3 +30,15 @@ java_test(
         "//jvm-deps:junit",
     ],
 )
+
+java_test(
+    name = "CreateBookingTest",
+    srcs = ["com/masorange/booking/application/CreateBookingTest.java"],
+    test_class = "com.masorange.booking.application.CreateBookingTest",
+    deps = [
+        ":application",
+        "//pkg/booking/domain:domain",
+        "//pkg/booking/infrastructure:infrastructure",
+        "//jvm-deps:junit",
+    ],
+)

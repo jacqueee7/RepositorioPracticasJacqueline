@@ -383,10 +383,10 @@ Corrige las tres CVEs en un solo cambio. Ejecuta `bazel build //...` y `bazel te
 
 ### Nivel 3 — Nuevas funcionalidades
 
-#### 3.1 Añadir listado de estudiantes por grupo
+#### 3.1 Añadir listado de estudiantes por grupo (HECHO)
 Crea un caso de uso `ListStudentsByClassGroup` en `registry/application/classgroup` que dado un `ClassGroupId` devuelva la lista de `StudentId`. Añade el test correspondiente.
 
-#### 3.2 Añadir nota máxima y mínima
+#### 3.2 Añadir nota máxima y mínima (HECHO)
 Crea un caso de uso `CalculateExtremes` en `grading/application` que dado un `StudentId` devuelva la nota más alta y la más baja. Piensa en cómo modelar la respuesta (value object? record?).
 
 #### 3.3 Añadir reserva de salas con horario
