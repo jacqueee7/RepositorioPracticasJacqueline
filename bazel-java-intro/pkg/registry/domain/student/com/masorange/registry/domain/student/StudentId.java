@@ -1,45 +1,19 @@
 package com.masorange.registry.domain.student;
 
-import java.util.Objects;
+import com.masorange.shared.domain.EntityId;
 import java.util.UUID;
 
-public final class StudentId {
+public final class StudentId extends EntityId {
 
-    private final UUID value;
-
-    private StudentId(UUID value) {
-        Objects.requireNonNull(value, "StudentId value must not be null");
-        this.value = value;
+    private StudentId(String value) {
+        super(value);
     }
 
     public static StudentId of(String value) {
-        Objects.requireNonNull(value, "StudentId string must not be null");
-        return new StudentId(UUID.fromString(value));
+        return new StudentId(value);
     }
 
     public static StudentId generate() {
-        return new StudentId(UUID.randomUUID());
-    }
-
-    public String value() {
-        return value.toString();
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof StudentId)) return false;
-        StudentId that = (StudentId) o;
-        return value.equals(that.value);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(value);
-    }
-
-    @Override
-    public String toString() {
-        return value.toString();
+        return new StudentId(UUID.randomUUID().toString());
     }
 }

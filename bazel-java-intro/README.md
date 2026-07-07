@@ -392,14 +392,14 @@ Crea un caso de uso `CalculateExtremes` en `grading/application` que dado un `St
 #### 3.3 Añadir reserva de salas con horario (HECHO)
 Extiende booking con el concepto de `TimeSlot` (día + hora inicio + hora fin) y `Booking` (Room + TimeSlot). Implementa las tres capas (domain, application, infrastructure). El dominio debe validar que no haya solapamientos.
 
-#### 3.4 Crear un cuarto desplegable: reporting
+#### 3.4 Crear un cuarto desplegable: reporting (HECHO)
 Crea un nuevo desplegable `//pkg/reporting/app:main` que dependa de `registry/domain/student:id` y `grading/domain` para generar un informe de notas. Usa una librería nueva (ej. Apache POI para Excel) añadiéndola a `jvm-deps/`.
 
 ---
 
 ### Nivel 4 — Arquitectura y Bazel avanzado
 
-#### 4.1 Extraer un módulo compartido
+#### 4.1 Extraer un módulo compartido (HECHO)
 `StudentId` y `TeacherId` siguen el mismo patrón (UUID, generate, of, value). Extrae una clase abstracta o genérica `EntityId` en un módulo compartido `//pkg/shared/domain`. Analiza el impacto en el grafo de dependencias.
 
 #### 4.2 Reemplazar InMemory por persistencia real

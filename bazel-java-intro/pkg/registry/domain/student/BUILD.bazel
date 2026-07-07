@@ -16,6 +16,9 @@ java_library(
     name = "id",
     srcs = ["com/masorange/registry/domain/student/StudentId.java"],
     visibility = ["//visibility:public"],
+    deps = [
+        "//pkg/shared/domain:domain", # <-- ¡AÑADIDO AQUÍ! Dependencia del módulo compartido
+    ],
 )
 
 # Full student domain: the Student aggregate and StudentName value object.

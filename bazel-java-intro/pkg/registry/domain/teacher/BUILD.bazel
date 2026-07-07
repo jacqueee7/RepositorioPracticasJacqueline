@@ -9,11 +9,15 @@
 
 load("@rules_java//java:defs.bzl", "java_library", "java_test")
 
-# Identity-only target: just TeacherId. No dependencies.
+# Identity-only target: just TeacherId.
+# Now depends on the shared EntityId from our new shared domain.
 java_library(
     name = "id",
     srcs = ["com/masorange/registry/domain/teacher/TeacherId.java"],
     visibility = ["//visibility:public"],
+    deps = [
+        "//pkg/shared/domain:domain", # <-- ¡AQUÍ ESTÁ EL CAMBIO!
+    ],
 )
 
 # Full teacher domain: Teacher aggregate + related value objects.
