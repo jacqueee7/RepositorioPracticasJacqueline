@@ -1,0 +1,13 @@
+load("@rules_java//java:defs.bzl", "java_binary")
+
+java_binary(
+    name = "main",
+    srcs = ["com/masorange/reporting/app/Main.java"],
+    main_class = "com.masorange.reporting.app.Main",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//jvm-deps:poi",                                 # Tu librería de Excel
+        "//pkg/registry/domain/student:id",               # ¡CORREGIDO! Ahora apunta a :id
+        "//pkg/grading/domain:domain",                    # Dependencia del dominio de notas
+    ],
+)
