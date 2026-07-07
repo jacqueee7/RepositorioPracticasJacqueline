@@ -64,3 +64,12 @@ java_library(
     exports = ["@maven//:junit_junit"],
     visibility = ["//visibility:public"],
 )
+
+java_library(
+    name = "poi",
+    visibility = ["//visibility:public"],
+    exports = [
+        "@maven//:org_apache_poi_poi",
+        "@maven//:org_apache_poi_poi_ooxml",
+    ],
+)

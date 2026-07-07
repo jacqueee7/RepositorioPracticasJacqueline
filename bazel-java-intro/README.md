@@ -389,7 +389,7 @@ Crea un caso de uso `ListStudentsByClassGroup` en `registry/application/classgro
 #### 3.2 Añadir nota máxima y mínima (HECHO)
 Crea un caso de uso `CalculateExtremes` en `grading/application` que dado un `StudentId` devuelva la nota más alta y la más baja. Piensa en cómo modelar la respuesta (value object? record?).
 
-#### 3.3 Añadir reserva de salas con horario
+#### 3.3 Añadir reserva de salas con horario (HECHO)
 Extiende booking con el concepto de `TimeSlot` (día + hora inicio + hora fin) y `Booking` (Room + TimeSlot). Implementa las tres capas (domain, application, infrastructure). El dominio debe validar que no haya solapamientos.
 
 #### 3.4 Crear un cuarto desplegable: reporting
