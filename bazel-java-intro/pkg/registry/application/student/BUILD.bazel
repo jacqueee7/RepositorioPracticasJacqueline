@@ -35,6 +35,7 @@ java_test(
     deps = [
         ":application",
         "//pkg/registry/domain/student:domain",
+        "//pkg/registry/domain/student:id",       # <-- ¡AÑADIR ESTO!
         "//pkg/registry/infrastructure/student:infrastructure",
         "//jvm-deps:junit",
     ],

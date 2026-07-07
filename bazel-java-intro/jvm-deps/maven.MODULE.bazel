@@ -34,8 +34,12 @@ maven.install(
         # Immutable collections - Guava (used by booking)
         "com.google.guava:guava:31.1-jre",
 
+        # Excel reporting - Apache POI
         "org.apache.poi:poi:5.2.5",
         "org.apache.poi:poi-ooxml:5.2.5",
+
+        # SQLite Database Driver (used by registry infrastructure)
+        "org.xerial:sqlite-jdbc:3.45.1.0",
     ],
 )
 

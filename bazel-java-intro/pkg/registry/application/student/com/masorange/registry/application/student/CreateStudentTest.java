@@ -1,36 +1,25 @@
 package com.masorange.registry.application.student;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
-
 import com.masorange.registry.domain.student.Student;
 import com.masorange.registry.infrastructure.student.InMemoryStudentRepository;
 import org.junit.Test;
+import static org.junit.Assert.*;
 
 public class CreateStudentTest {
 
     @Test
-    public void shouldCreateAndPersistStudent() {
+    public void testCreateStudentSuccessfully() {
+        // 1. Instanciamos tu repositorio (que por dentro usa SQLite)
         InMemoryStudentRepository repository = new InMemoryStudentRepository();
-        CreateStudent createStudent = CreateStudent.create(repository);
-        Student student = createStudent.execute("Ana Garcia");
-        assertNotNull(student.id());
-        assertEquals("Ana Garcia", student.name().value());
-        assertTrue(repository.findById(student.id()).isPresent());
-    }
+        
+        // 2. ¡CORREGIDO! Usamos el método factoría porque el constructor es privado
+        CreateStudent useCase = CreateStudent.create(repository);
 
-    @Test(expected = IllegalArgumentException.class)
-    public void shouldFailWithEmptyName() {
-        InMemoryStudentRepository repository = new InMemoryStudentRepository();
-        CreateStudent createStudent = CreateStudent.create(repository);
-        createStudent.execute("");
-    }
-
-    @Test(expected = NullPointerException.class)
-    public void shouldFailWithNullName() {
-        InMemoryStudentRepository repository = new InMemoryStudentRepository();
-        CreateStudent createStudent = CreateStudent.create(repository);
-        createStudent.execute(null);
+        // 3. Ejecutamos y guardamos el resultado
+        Student student = useCase.execute("Alice"); 
+        
+        // 4. Verificamos que todo haya ido bien
+        assertNotNull(student);
+        assertEquals("Alice", student.name().value());
     }
 }

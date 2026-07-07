@@ -402,7 +402,7 @@ Crea un nuevo desplegable `//pkg/reporting/app:main` que dependa de `registry/do
 #### 4.1 Extraer un módulo compartido (HECHO)
 `StudentId` y `TeacherId` siguen el mismo patrón (UUID, generate, of, value). Extrae una clase abstracta o genérica `EntityId` en un módulo compartido `//pkg/shared/domain`. Analiza el impacto en el grafo de dependencias.
 
-#### 4.2 Reemplazar InMemory por persistencia real
+#### 4.2 Reemplazar InMemory por persistencia real (HECHO)
 Sustituye `InMemoryStudentRepository` por una implementación con SQLite o H2. Añade las dependencias Maven necesarias en `jvm-deps/`. Observa que solo cambia la capa de infrastructure — domain y application no se tocan.
 
 #### 4.3 Añadir tests de integración

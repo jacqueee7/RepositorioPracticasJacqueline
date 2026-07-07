@@ -73,3 +73,9 @@ java_library(
         "@maven//:org_apache_poi_poi_ooxml",
     ],
 )
+
+java_library(
+    name = "sqlite",
+    visibility = ["//visibility:public"],
+    exports = ["@maven//:org_xerial_sqlite_jdbc"],
+)
