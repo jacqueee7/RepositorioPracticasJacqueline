@@ -17,3 +17,15 @@ java_library(
         "//jvm-deps:sqlite",
     ],
 )
+java_test(
+    name = "StudentRepositoryIntegrationTest",
+    srcs = ["com/masorange/registry/infrastructure/student/integration/StudentRepositoryIntegrationTest.java"],
+    test_class = "com.masorange.registry.infrastructure.student.integration.StudentRepositoryIntegrationTest",
+    size = "medium",
+    deps = [
+        ":infrastructure",
+        "//pkg/registry/domain/student:domain",
+        "//pkg/registry/domain/student:id",
+        "//jvm-deps:junit",
+    ],
+)
