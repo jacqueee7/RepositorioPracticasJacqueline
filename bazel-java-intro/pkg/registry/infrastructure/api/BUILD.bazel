@@ -1,0 +1,12 @@
+java_binary(
+    name = "server",
+    srcs = ["StudentController.java"],
+    main_class = "pkg.registry.infrastructure.api.StudentController",
+    deps = [
+        "//pkg/registry/application/student:application",
+        "//pkg/registry/domain/student:domain",
+        "@maven//:com_sparkjava_spark_core",
+        "@maven//:com_google_code_gson_gson",
+        "@maven//:org_slf4j_slf4j_simple",
+    ],
+)

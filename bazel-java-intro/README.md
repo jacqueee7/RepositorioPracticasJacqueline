@@ -408,7 +408,7 @@ Sustituye `InMemoryStudentRepository` por una implementación con SQLite o H2. A
 #### 4.3 Añadir tests de integración
 Crea una carpeta de tests de integración separada que pruebe los repositorios con persistencia real. Configura los `java_test` en Bazel con `size = "medium"` o `"large"`.
 
-#### 4.4 Analizar el grafo de dependencias con Bazel
+#### 4.4 Analizar el grafo de dependencias con Bazel (HECHO)
 Usa estos comandos para explorar:
 
 ```bash
@@ -427,6 +427,9 @@ bazel query "deps(//pkg/registry/app:main)" --noimplicit_deps --output graph | d
 
 #### 4.5 Separar tests en targets independientes
 Actualmente los tests de application usan implementaciones de infrastructure (InMemory). Evalúa si esto es un code smell o una decisión pragmática. Argumenta tu postura.
+
+Respuesta:
+Aunque el uso de una implementación real en memoria (InMemory) fue una decisión pragmática inicial para validar la funcionalidad rápidamente, mantenerla en los tests de aplicación es un code smell. Crea un acoplamiento indebido entre la lógica de negocio y la infraestructura. Para solventarlo, he refactorizado los tests de aplicación para que dependan exclusivamente de una interfaz y un Stub (Test Double) propio del módulo de aplicación. Esto garantiza que la capa de aplicación sea completamente agnóstica a cómo se persiste la información, cumpliendo estrictamente con el Principio de Inversión de Dependencia
 
 ---
 
